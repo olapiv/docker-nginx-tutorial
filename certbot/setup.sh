@@ -7,7 +7,7 @@ if [ -z "${DEV}" ]; then
     exit 1
 fi
 
-domains=(hello_django.de www.hello_django.de)
+domains=(your_domain.com www.your_domain.com)
 rsa_key_size=4096
 conf_path="/etc/letsencrypt"
 www_path="/var/www/certbot"
@@ -40,7 +40,7 @@ if [ $DEV == true ]; then
 fi
 
 echo "### Requesting Let's Encrypt certificate for $domains ..."
-domain_args=""  # --> "-d hello_django.de -d www.hello_django.de"
+domain_args=""  # --> "-d your_domain.com -d www.your_domain.com"
 for domain in "${domains[@]}"; do
   domain_args="$domain_args -d $domain"
 done

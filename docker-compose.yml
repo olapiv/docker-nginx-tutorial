@@ -18,7 +18,7 @@ services:
     image: graphhopper/graphhopper:latest
     container_name: hello_django_graphhopper_prod
     restart: always
-    command: ["/data/europe_germany_berlin.pbf"]
+    command: ["/data/europe_germany_hamburg.pbf"]
     env_file:
       - ./django/production.env
     volumes:
