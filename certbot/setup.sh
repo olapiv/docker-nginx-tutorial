@@ -2,12 +2,18 @@
 
 # Original script: https://raw.githubusercontent.com/wmnnd/nginx-certbot/master/init-letsencrypt.sh
 
+if [ -z "${DEV}" ]; then
+    echo "Environmental variables are missing!"
+    exit 1
+fi
+
 domains=(hello_django.de www.hello_django.de)
 rsa_key_size=4096
 conf_path="/etc/letsencrypt"
 www_path="/var/www/certbot"
 email="my_email@icloud.com"
 
+mkdir -p "$conf_path/live"
 domain_path="$conf_path/live/$domains"
 mkdir -p "$domain_path"
 
@@ -18,7 +24,7 @@ if [ ! -f "$conf_path/options-ssl-nginx.conf" ] || [ ! -f "$conf_path/ssl-dhpara
 fi
 
 # Existing data found for $domains. Continuing replaces existing certificate.
-if [ -d "$domain_path" ]; then
+if [ ! -z "$(ls -A $domain_path)" ]; then
     echo "### Existing data found for $domains. Not replacing certificates."
     trap exit TERM; while :; do certbot renew; sleep 12h & wait $!; done;
 fi
@@ -33,28 +39,19 @@ if [ $DEV == true ]; then
     trap exit TERM; while :; do certbot renew; sleep 12h & wait $!; done;
 fi
 
-# echo "### Deleting dummy certificate for $domains ..."
-# rm -Rf /etc/letsencrypt/live/$domains && \
-#     rm -Rf /etc/letsencrypt/archive/$domains && \
-#     rm -Rf /etc/letsencrypt/renewal/$domains.conf
-
 echo "### Requesting Let's Encrypt certificate for $domains ..."
-domain_args=""
+domain_args=""  # --> "-d hello_django.de -d www.hello_django.de"
 for domain in "${domains[@]}"; do
   domain_args="$domain_args -d $domain"
 done
 
 # Select appropriate email arg
-case "$email" in
+case "$SSL_EMAIL" in
   "") email_arg="--register-unsafely-without-email" ;;
-  *) email_arg="--email $email" ;;
+  *) email_arg="--email $SSL_EMAIL" ;;
 esac
 
-# Enable staging mode if needed
-if [ $DEV == true ]; then staging_arg="--staging"; fi
-
 certbot certonly --webroot -w $www_path \
-    $staging_arg \
     $email_arg \
     $domain_args \
     --rsa-key-size $rsa_key_size \

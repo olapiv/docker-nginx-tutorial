@@ -16,10 +16,7 @@ RUN pip install -r requirements.txt \
     && pip install gunicorn
 ADD . $APP_HOME
 
-# Use different user
-RUN addgroup -S app && adduser -S app -G app
-RUN chown -R app:app $APP_HOME
-RUN chmod +x $APP_HOME/entrypoint*
-USER app
+# Make executable
+RUN chmod +x $APP_HOME/entrypoint.sh
 
 ENTRYPOINT $APP_HOME/entrypoint.sh

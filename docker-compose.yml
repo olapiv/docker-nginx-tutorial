@@ -15,7 +15,7 @@ services:
       - graphhopper
 
   graphhopper:
-    image: vindocklo/shnake_graphhopper:master
+    image: graphhopper/graphhopper:latest
     container_name: hello_django_graphhopper_prod
     restart: always
     command: ["/data/europe_germany_berlin.pbf"]
@@ -50,6 +50,7 @@ services:
     restart: always
     environment:
       DEV: "false"
+      SSL_EMAIL: "my_email@icloud.com"
     volumes:
       - ssl_data_conf:/etc/letsencrypt
       - ssl_data_www:/var/www/certbot
