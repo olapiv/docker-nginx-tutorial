@@ -1,6 +1,6 @@
 # Tutorial: Dockerizing Two Web-Servers To Respond To The Same Domain
 
-This is the repository to a [Tutorial written on Medium](https://medium.com/swlh/dockerizing-two-web-servers-to-respond-to-the-same-domain-eb9c15734a68).
+This is the repository to a [tutorial written on Medium](https://medium.com/swlh/dockerizing-two-web-servers-to-respond-to-the-same-domain-eb9c15734a68).
 
 > ## Introduction
 >
@@ -41,7 +41,7 @@ This is the repository to a [Tutorial written on Medium](https://medium.com/swlh
 ### Production-specific
 
 * Purchase a domain
-* Change domain references to your domain
+* Replace 'your_domain.com' references to your domain
 * Remove docker-compose.override.yml file
 
 ## Test
@@ -56,11 +56,6 @@ This is the repository to a [Tutorial written on Medium](https://medium.com/swlh
   * [www.graphhopper.your_domain.com](https://www.graphhopper.your_domain.com)
   * [graphhopper.your_domain.com](https://graphhopper.your_domain.com)
 
-docker volume rm docker_tutorial_ssl_data_conf
-docker volume rm docker_tutorial_ssl_data_www
-
 ## TODO
 
-* Fix ## ./nginx/django.conf in Medium
-* Change munich to hamburg in Medium
-* Change "traps" text
+* Feedback: https://github.com/KTH/devops-course/pull/488
