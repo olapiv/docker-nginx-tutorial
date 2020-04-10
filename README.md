@@ -4,7 +4,15 @@ This is the repository to a [tutorial written on Medium](https://medium.com/swlh
 
 > ## Introduction
 >
-> In this tutorial I will be showing you how to use Docker to have two web servers respond to the same domain (different subdomains) and also be able to communicate with one another. One web server will be using the Python Django framework, whilst the other web server is an open-source Java project called Graphhopper. The Graphhopper project uses Open Street Map (OSM) data to calculate routes, provide geocoding and also a few other interesting features. Whilst the Django application will first have to be “dockerized”, the Graphhopper server is already a fully working Docker project. This tutorial uses Nginx as a reverse-proxy and aims to provide code, which will only require a single command at development & production start-up: `docker-compose up --build`
+> If you have ever built a service which consisted of multiple loosely linked web servers, all responding to the same domain, and have wondered how you could dockerize them, then this tutorial is for you. If you have built such a project and are wondering why you should implement Docker, here are a couple of reasons:
+>
+> * No more special dependencies for different operating systems. Figure out your installations once and be done with it.
+>
+> * Write your setup code once and deploy it as often as you want to. No more repeating it manually on different servers.
+>
+> * Keep a concise overview of all required services in your docker-compose file. Easily test if they work together locally.
+>
+> So, if you’re still following, let’s hope you’ll learn something from this!
 
 ## Setup
 
@@ -27,7 +35,7 @@ This is the repository to a [tutorial written on Medium](https://medium.com/swlh
     graphhopper_dev |   Content-Type: application/octet-stream
     ```
 
-    Usually this message means the download is working. However, Graphhopper does not show the download process, so just hope for it! ;)
+    Usually this message means the download is working. However, Graphhopper does not show the download process, so just hope for it! 😉
 
 ### Development-specific
 
@@ -56,6 +64,3 @@ This is the repository to a [tutorial written on Medium](https://medium.com/swlh
   * [www.graphhopper.your_domain.com](https://www.graphhopper.your_domain.com)
   * [graphhopper.your_domain.com](https://graphhopper.your_domain.com)
 
-## TODO
-
-* Feedback: https://github.com/KTH/devops-course/pull/488
