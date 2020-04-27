@@ -21,4 +21,5 @@ services:
     container_name: hello_django_certbot_dev
     environment:
       DEV: "true"
+      NGINX_CONTAINER: "shnake_nginx_dev"
     restart: "no"
